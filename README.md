@@ -121,10 +121,15 @@ openssl verify -CAfile ca.crt user_cert.pem
 
 ```bash
 # Start a TLS server using your certificate
-openssl s_server -cert user_cert.pem -key private_key.pem -CAfile ca.crt -Verify 1 -accept 4443
+openssl s_server -cert user_cert.pem -key private_key.pem -CAfile ca.crt -accept 4443
 
 # Connect as a client
-openssl s_client -connect localhost:4443 -CAfile ca.crt
+openssl s_client \
+-connect localhost:4443 \
+-cert user_cert.pem \
+-key private_key.pem \
+-CAfile ca.crt
+
 ```
 
 **Concepts covered:** secure communication, TLS, PKI-based authentication.
